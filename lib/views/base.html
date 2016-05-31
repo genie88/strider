@@ -2,7 +2,7 @@
 <html ng-app="app">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title class='StriderBlock_title'>{% block preTitle %}{% endblock %}{% pluginblock title %}Strider - 前端CI&CD系统{% endpluginblock %}</title>
+    <title class='StriderBlock_title'>{% block preTitle %}{% endblock %}{% pluginblock title %}Raptor 前端CI&CD系统{% endpluginblock %}</title>
     <link rel="shortcut icon" href="{% block favicon %}/favicon.ico{% endblock %}" />
     <link rel="stylesheet" href="/styles/styles.css">
     {% block extra_head %}{% endblock %}
@@ -18,7 +18,7 @@
           <a data-toggle="collapse" data-target=".nav-collapse" class="btn btn-navbar">
             <i class="fa fa-bars fa-lg"></i>
           </a>
-          <a href="/" class="brand StriderBlock_Brand">{% pluginblock Brand %}Strider{% endpluginblock %}</a>
+          <a href="/" class="brand StriderBlock_Brand">{% pluginblock Brand %}Raptor{% endpluginblock %}</a>
           <div class="nav-collapse collapse StriderBlock_Nav">
 
             {% pluginblock Nav %}
@@ -47,7 +47,7 @@
                 <ul class="nav pull-right">
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      <img src="{{ currentUser.gravatar }}" class="img-circle current-user-gravatar">
+                      <!-- <img src="{{ currentUser.gravatar }}" class="img-circle current-user-gravatar"> -->
                       {{ currentUser.email }} <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">

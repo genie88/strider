@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block preTitle %}
-  Projects -
+   项目 -
 {% endblock %}
 
 {% pluginblock ExtraStyles %}
@@ -15,7 +15,7 @@
 
 
 {% block bodyContent %}
-  <h3>Projects</h3>
+  <h3>我的项目</h3>
 
   <div class="projects-page" ng-app="projects" ng-controller="AlertsController">
     {% for messages in flash %}
@@ -26,26 +26,26 @@
 
     <div class="accounts-nav">
       <ul class="nav nav-tabs">
-        {% for account in currentUser.accounts %}
+        <!-- {% for account in currentUser.accounts %}
           <li{% if loop.first %} class="active"{% endif %}>
             <a href="#account-{{ account.provider }}-{{ account.id }}" data-toggle="tab">
-              {% if providers[account.provider].inline_icon %}<i class="fa fa-{{ providers[account.provider].inline_icon }}"></i>{% endif %} 
+              {% if providers[account.provider].inline_icon %}<i class="fa fa-{{ providers[account.provider].inline_icon }}"></i>{% endif %}
               {{ account.title }}
             </a>
           </li>
-        {% endfor %}
+        {% endfor %} -->
 
-        <li class="pull-right">
-          <a href="#manual-setup" data-toggle="tab"{% if !currentUser.accounts.length %} class="active"{% endif %}>Manual Add</a>
-        </li>
+       <!--  <li class="">
+          <a href="#manual-setup" data-toggle="tab" class="active">手动添加项目</a>
+        </li> -->
 
-        {% for provider in unconfigured %}
+        <!-- {% for provider in unconfigured %}
           <li>
             <a href="{{ provider.setupLink }}">
               {% if provider.inline_icon %}<i class="fa fa-{{ provider.inline_icon }}"></i>{% endif %} Setup {{ provider.title }}
             </a>
           </li>
-        {% endfor %}
+        {% endfor %} -->
       </ul>
     </div>
       <div class="notify-wrapper pull-right">
@@ -159,25 +159,25 @@
           </ul>
         </div>
       </div>
-      <div class="tab-pane" id="manual-setup">
+      <div class="tab-pane active" id="manual-setup">
         {% for item in manual %}
         <div id="manual-{{ loop.key }}" ng-controller="ManualController">
           <form name="create{{ loop.key }}">
-            <h3>{{ item.provider.title }}</h3>
+            <h3> 添加 {{ item.provider.title }} 项目</h3>
             <div class="general">
               <p>
-              <small>Public projects are visible to unauthenticated users.</small>
+              <small>是否公开，未授权用户可以访问</small>
               <div ng-model="public" class="btn public-btn" btn-checkbox>Public</div>
               </p>
 
               <p>
-              <small>Provides a link in the UI if you put a url there, so you can easily jump to viewing the repo on github or wherever</small>
+              <small>项目地址</small>
               <br/>
               <input type="text" ng-model="display_url" placeholder="Display Url">
               </p>
 
               <p>
-              <small>A github-style namespace/name combination for the project. e.g. Strider-CD/strider</small>
+              <small>项目的别名，可参考github风格。例如 honey-lab/honey </small>
               <br/>
               <input type="text" required ng-pattern="/[\w-]\/[\w-]/" ng-model="display_name" placeholder="Name">
               </p>
@@ -186,7 +186,7 @@
             <div class="provider-specific">
               {{ item.provider.html | raw }}
             </div>
-            <button ng-disabled="!create{{ loop.key }}.$valid" class="btn btn-primary" ng-click="create()">Create New</button>
+            <button ng-disabled="!create{{ loop.key }}.$valid" class="btn btn-primary" ng-click="create()">创建新项目</button>
           </form>
           <ul class="unstyled repo-list">
             <li class="repo" ng-repeat="project in projects">
@@ -198,11 +198,11 @@
               <div class="pull-right">
                 <button ng-show="project.really_remove" class="btn btn-danger" ng-click="remove(project)" ng-disabled="project.really_remove === 'removing'">
                   <i class="fa fa-refresh fa-spin" ng-show="project.really_remove === 'removing'"></i>
-                  Really remove
+                  确定删除
                 </button>
                 <a href="/[[ project.name ]]/config" data-toggle="tooltip" title="Configure"><i class="fa fa-wrench"></i></a>
-                <button class="btn btn-danger" ng-click="project.really_remove = true" ng-disabled="project.really_remove">Remove</button>
-                <button ng-disabled="repo.adding" class="btn btn-primary" ng-click="repo.adding = 'pick-type'">Add</button>
+                <button class="btn btn-danger" ng-click="project.really_remove = true" ng-disabled="project.really_remove">删除</button>
+                <button ng-disabled="repo.adding" class="btn btn-primary" ng-click="repo.adding = 'pick-type'">添加</button>
               </div>
               </div>
             </li>
