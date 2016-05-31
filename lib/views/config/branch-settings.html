@@ -2,25 +2,29 @@
   <label class="checkbox">
     <input type="checkbox" ng-model="branch.active" data-test="active"> Active
   </label>
-  <p class="help-text">When a branch is deactivated, tests and deploys can only be triggered manually.</p>
+  <p class="help-text">选中该选项后，只能手动非active状态分支的触发编译和部署自动化过程.</p>
+
+  <label class="checkbox">
+    <input type="checkbox" ng-model="branch.daily_build"> Daily Build
+  </label>
+  <p class="help-text">选中该选项会自动进行每日构建.</p>
 
   <label class="checkbox">
     <input type="checkbox" ng-model="branch.deploy_on_green"> Deploy on Green
   </label>
-  <p class="help-text">When "deploy on green" is disabled, automatically triggered builds will not deploy.</p>
-  
+  <p class="help-text">取消该选项后，自动触发的编译将不会进行自动部署</p>
+
   <label class="checkbox">
     <input type="checkbox" ng-model="branch.deploy_on_pull_request"> Deploy on Pull Request
   </label>
-  <p class="help-text">When "deploy on pull request" is disabled, pull request builds will not deploy.</p>
-  
-  
+  <p class="help-text">取消该选项后，PR触发的编译将不会进行自动部署.</p>
+
+
 
 
   <div id="ssh-keys">
-    <h3>SSH keys</h3>
-    <p>These keys will be available to any plugins that need ssh
-      keys. Plugins may however choose to use different keys.</p>
+    <h3>SSH密钥</h3>
+    <p>这里设置的密钥将会给需要使用密钥的插件使用。插件可能会自己使用不同的密钥。</p>
     <div class="row-fluid">
       <div class="span6">
         <h4>Private Key</h4>
@@ -34,11 +38,11 @@
 
     <div class="row-fluid spaced-group">
       <div class="span3">
-        <button ng-click="generateKeyPair()" class="btn">Generate new keypair</button>
+        <button ng-click="generateKeyPair()" class="btn">生成新的密钥</button>
       </div>
       <div class="span9">
         <label class="checkbox pull-right">
-          <input ng-model="branch.envKeys" type="checkbox"> Make ssh keys available on the ENV as STRIDER_SSH_PUB and STRIDER_SSH_PRIV
+          <input ng-model="branch.envKeys" type="checkbox"> 将SSH Key暴露到环境变量中(STRIDER_SSH_PUB & STRIDER_SSH_PRIV)
         </label>
       </div>
     </div>
@@ -83,5 +87,5 @@
     </div>
   </div>
 
-  <button ng-click="saveGeneralBranch()" class="btn btn-primary pull-right">Save</button>
+  <button ng-click="saveGeneralBranch()" class="btn btn-primary pull-right">保存设置</button>
 </div>
