@@ -1,13 +1,13 @@
-@import "libs.less";
-@import "config.less";
-@import "build.less";
-@import "dashboard.less";
-@import "projects.less";
-@import "admin/users.less";
-@import "admin/plugins.less";
+@import "client/styles/libs.less";
+@import "client/styles/config.less";
+@import "client/styles/build.less";
+@import "client/styles/dashboard.less";
+@import "client/styles/projects.less";
+@import "client/styles/admin/users.less";
+@import "client/styles/admin/plugins.less";
 
-@import "strider-colors.less";
-@import "alerts.less";
+@import "client/styles/strider-colors.less";
+@import "client/styles/alerts.less";
 
 html, body {
   height: 100%;
@@ -15,7 +15,13 @@ html, body {
 
 body {
   background-color: #fff;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "-apple-system" 'Source Sans Pro', sans-serif;
+}
+
+a {
+    background: transparent;
+    text-decoration: none;
+    color: #0e2026;
 }
 
 h3 {
@@ -711,8 +717,8 @@ hero-vsub-unit label {
 }
 pre.console-output {
   overflow: auto;
-  background-color: black;
-  color: white;
+  background-color: #2a2a2a;
+  color: #22aa00;
   position: absolute;
   top: 65px;
   bottom: 0;
@@ -723,8 +729,8 @@ pre.console-output {
 pre.console-output-segment {
   width: 96%;
   overflow: auto;
-  background-color: black;
-  color: white;
+  background-color: #2a2a2a;
+  color: #22aa00;
 }
 span.green {
   color: green;
@@ -902,3 +908,17 @@ span.underline {
   border-radius: 3px;
   border: 1px solid transparent;
 }
+
+.m-footer{
+    text-align: center;
+    padding: 24px 0;
+    background-color: #f7f9fa;
+    font-size: 14px;
+
+    a {
+      margin-left: 30px;
+    }
+
+    a.copy{ margin-left: 200px; color: #a6aeb3;}
+}
+

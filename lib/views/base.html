@@ -80,21 +80,20 @@
     {% endblock %}
     </div>
 
-    <footer>
-      <!-- <p class='StriderBlock_FooterText'>
+    <div class='m-footer'>
+      <p>
         {% pluginblock FooterText %}
-            <a href="http://stridercd.com/">Strider-CD</a>
-          | <a href="https://github.com/Strider-CD/strider/issues?state=open">Get Help / Report a Bug</a>
-          | <a href="https://github.com/Strider-CD/strider/blob/master/README.md">Docs</a>
+          <a href="http://ci.mgtv.com/about">关于我们</a>
+          <a href="http://ci.mgtv.com/help">帮助文档</a>
+          <a href="http://ci.mgtv.com/terms">服务协议</a>
           {% if version %}
-          | <a href="https://github.com/Strider-CD/strider/releases/tag/{{version}}">{{version}}</a>
+            <a href="http://ci.mgtv.com/" class="copy">2016 &copy; Raptor</a>
           {% endif %}
         {% endpluginblock %}
-      </p> -->
-
+      </p>
       {% block footerScripts %}{% endblock %}
       {% block pageScripts %}{% endblock %}
-    </footer>
+    </div>
 
     <script src="/scripts/app.js"></script>
     <script src="/scripts/plugin-config-compiled.js"></script>
