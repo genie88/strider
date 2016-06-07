@@ -1,33 +1,22 @@
 <div class="row-fluid">
   <div class = "span12">
-    <div class='well'>
-      <h3>Brilliant Continuous Deployment.</h3>
-      {% include "partials/_strider_copy.html" %}
-
-      <div class="row-fluid">
-        <div class="span4">
-            <img src="images/logo-250x250-transp.png" style="height: 192px" />
+    <div class = "span4"></div>
+    <div class = "span4 login-wrapper">
+      <form class="login-form" action="/login" method="post">
+        <h4>登  录</h4>
+        <div class="form-group">
+          <input type="email" class="form-control span12" id="email" name="email" placeholder="test@example.com"/>
         </div>
-        <div class = "span8">
-          <form class='login-form' action="/login" method="post">
-            <div class="form-group">
-              <label for="email"><strong>Email:</strong></label>
-              <input type="email" class="form-control span12" id="email" name="email" placeholder="test@example.com"/>
-            </div>
-            <div class="form-group">
-              <label for="password"><strong>Password:</strong></label>
-              <input type="password" class="form-control span12" id="password" name="password"  placeholder="dontl00k"/>
-            </div>
-            <div>
-              <input class="btn btn-success" type="submit" value="Log In"/>
-              {% pluginblock ExtraLoginButton %}
-              {% endpluginblock %}
-            </div>
-          </form>
-          <p><strong><a href="/register">I have an invite code.</a></strong></p>
-          <p><a id="forgot-password-link" href="/forgot">Forgot your password?</a></p>
+        <div class="form-group">
+          <input type="password" class="form-control span12" id="password" name="password"  placeholder="dontl00k"/>
         </div>
-      </div>
+        <div>
+          <input class="btn btn-success" type="submit" value="登录"/>
+          {% pluginblock ExtraLoginButton %}
+          {% endpluginblock %}
+        </div>
+      </form>
+      <p><a href="/forgot" class="forget">忘记密码</a> <a href="/register" class="register">注册用户</a> </p>
     </div>
   </div>
 </div>

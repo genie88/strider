@@ -89,7 +89,8 @@ body.job_view .body-content {
 
 .console-output {
   overflow-y: auto;
-  overflow-x: visible; 
+  overflow-x: visible;
+  min-height: 800px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   -webkit-flex: 1;
@@ -131,7 +132,7 @@ body.job_view .body-content {
       &:hover {
         background-color: #222;
       }
-      
+
       .meta {
         color: #999;
 
@@ -149,9 +150,9 @@ body.job_view .body-content {
   }
 
   &, pre {
-    background-color: black;
+    background-color: #2a2a2a;
     font-family: monospace;
-    color: white;
+    color: #22aa00;
   }
 
   pre {
@@ -203,18 +204,10 @@ body.job_view .job-left-col {
   flex-direction: column;
 }
 
-body.job_view .wrap {
-  min-height: 0 !important;
-}
-
-body.job_view footer {
-  display: none;
-}
-
 @media (max-width: 768px) {
   pre.console-output {
     position: static;
-    max-height: 500px; 
+    max-height: 500px;
   }
   body.job_view #build-metadata .span3 {
     display: inline-block;

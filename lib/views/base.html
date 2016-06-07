@@ -11,7 +11,7 @@
   </head>
 
   <body class="{% block bodyclass %}{% endblock %}">
-    <div class="navbar navbar-fixed-top navbar-inverse">
+    <div class="navbar navbar-fixed-top">
       {% pluginblock TopNav %}
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -80,7 +80,7 @@
     {% endblock %}
     </div>
 
-    <div class='m-footer'>
+    <div class="m-footer" style="display:none;">
       <p>
         {% pluginblock FooterText %}
           <a href="http://ci.mgtv.com/about">关于我们</a>
