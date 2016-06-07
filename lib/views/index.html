@@ -40,10 +40,10 @@
             {% endif %}
 
             {% if currentUser && jobs.yours.length < 1 %}
-              <div class="well no-projects" data-test="no-personal-projects">
-                <h3>You don't have any projects configured.</h3>
-                {% if availableProviders.length %}
-                  <h4>Link Accounts:</h4>
+              <div class="no-projects" data-test="no-personal-projects">
+                <h3>您尚未添加任何项目.</h3>
+                <a class="btn btn-success" href="/projects#manual">手动添加git项目</a>
+                <!-- {% if availableProviders.length %}
                   {% for provider in availableProviders %}
                     {% if provider.setupLink %}
                       <span class="link-accounts">
@@ -60,12 +60,12 @@
                   <a class="btn btn-success" href="/projects">Add projects</a>
                 {% else %}
                   or <a class="btn btn-success" href="/projects#manual">Add a project manually</a>
-                {% endif %}
+                {% endif %}-->
               </div>
             {% endif %}
 
             <div ng-show="jobs.yours.length">
-              <h3>Your Projects</h3 ng-cloak>
+              <h3>你的项目</h3 ng-cloak>
               <table id="job-list" class="table">
                 {% include "partials/dashboard-header.html" %}
                 <tbody>
@@ -77,7 +77,7 @@
             </div>
 
             <div ng-show="jobs.public.length">
-              <h3>Public Projects</h3 ng-cloak>
+              <h3>公共项目</h3 ng-cloak>
               <table id="job-list" class="table">
                 {% set config = { "public": true } %}
                 {% include "partials/dashboard-header.html" with config %}

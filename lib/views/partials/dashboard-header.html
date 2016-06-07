@@ -1,16 +1,16 @@
 <thead>
-  <th class="job-header">Job</th>
+  <th class="job-header">任务编号</th>
   {% if !public %}
-    <th class="deploy-header"></th>
-    <th class="refresh-header"></th>
+    <th class="deploy-header">部署</th>
+    <th class="refresh-header">编译</th>
   {% endif %}
-  <th>Project</th>
-  <th class="history"></th>
-  <th class="committer-header"></th>
-  <th class="branch-header">Branch</th>
-  <th class="triggered-by-header">Triggered By</th>
-  <th class="github-header"></th>
-  <th colspan="2">Duration</th>
-  <th></th>
-  {% if !public %}<th class="configure-header"></th>{% endif %}
+  <th>项目</th>
+  <th>构建历史</th>
+  <th>用户</th>
+  <th>分支</th>
+  <th>触发条件</th>
+  <th>地址</th>
+  <th>构建用时</th>
+  <th>触发时间</th>
+  {% if !public %}<th class="configure-header">配置</th>{% endif %}
 </thead>
