@@ -26,26 +26,26 @@
 
     <div class="accounts-nav">
       <ul class="nav nav-tabs">
-        <!-- {% for account in currentUser.accounts %}
+        {% for account in currentUser.accounts %}
           <li{% if loop.first %} class="active"{% endif %}>
             <a href="#account-{{ account.provider }}-{{ account.id }}" data-toggle="tab">
               {% if providers[account.provider].inline_icon %}<i class="fa fa-{{ providers[account.provider].inline_icon }}"></i>{% endif %}
               {{ account.title }}
             </a>
           </li>
-        {% endfor %} -->
+        {% endfor %}
 
-       <!--  <li class="">
+        <li class="">
           <a href="#manual-setup" data-toggle="tab" class="active">手动添加项目</a>
-        </li> -->
+        </li>
 
-        <!-- {% for provider in unconfigured %}
-          <li>
+        {% for provider in unconfigured %}
+          <!-- <li>
             <a href="{{ provider.setupLink }}">
               {% if provider.inline_icon %}<i class="fa fa-{{ provider.inline_icon }}"></i>{% endif %} Setup {{ provider.title }}
             </a>
-          </li>
-        {% endfor %} -->
+          </li> -->
+        {% endfor %}
       </ul>
     </div>
       <div class="notify-wrapper pull-right">
@@ -75,7 +75,7 @@
               <input type="hidden" name="refresh" value=[[ account.provider ]] />
               <input type="hidden" name="aid" value=[[ account.id ]] />
               <button class="refresh btn btn-warning" ng-click="submit()">
-                Refresh Account <i class="fa fa-refresh"></i>
+                刷新账户<i class="fa fa-refresh"></i>
               </button>
             </form>
           </div>
@@ -107,26 +107,26 @@
                   <span ng-switch-when="true">
                     <button ng-show="repo.really_remove" class="btn btn-danger" ng-click="removeProject(account, repo, group)" ng-disabled="repo.really_remove === 'removing'">
                       <i class="fa fa-refresh fa-spin" ng-show="repo.really_remove === 'removing'"></i>
-                      Really remove
+                      确定删除吗？
                     </button>
 
                     <a href="/[[ repo.project.name ]]/config" data-toggle="tooltip" title="Configure"><i class="fa fa-wrench"></i></a>
 
                     <span ng-switch="repo.really_remove">
-                      <button ng-switch-default class="btn btn-warning" ng-click="toggleRemove(repo)" ng-disabled="repo.really_remove">Remove</button>
-                      <button ng-switch-when="true" ng-disabled="!repo.really_remove" class="btn btn-default" ng-click="toggleRemoveCancel(repo)">Cancel</button>
+                      <button ng-switch-default class="btn btn-warning" ng-click="toggleRemove(repo)" ng-disabled="repo.really_remove">删除</button>
+                      <button ng-switch-when="true" ng-disabled="!repo.really_remove" class="btn btn-default" ng-click="toggleRemoveCancel(repo)">取消</button>
                     </span>
                   </span>
 
                   <div ng-switch-default ng-switch="repo.adding">
-                    <button ng-disabled="repo.adding" ng-switch-default class="btn add-repo btn-primary" ng-click="toggleAdd(repo)">Add</button>
-                    <button ng-disabled="!repo.adding" ng-switch-when="pick-type" class="btn cancel-add-repo btn-default" ng-click="toggleAddCancel(repo)">Cancel</button>
+                    <button ng-disabled="repo.adding" ng-switch-default class="btn add-repo btn-primary" ng-click="toggleAdd(repo)">添加</button>
+                    <button ng-disabled="!repo.adding" ng-switch-when="pick-type" class="btn cancel-add-repo btn-default" ng-click="toggleAddCancel(repo)">取消</button>
                   </div>
                 </div>
 
                 <div class="adding-repo pull-right" ng-show="repo.adding" ng-switch="repo.adding">
                   <div class="pick-type" ng-switch-when="pick-type">
-                    <span class="text">What type of project?</span>
+                    <span class="text">这是何种项目?</span>
                     {% for type in project_types %}
                       <div data-toggle="tooltip"
                            data-placement="bottom"
@@ -139,18 +139,18 @@
                   </div>
                   <div ng-switch-when="loading" class="setting-up">
                     <span class="text">
-                      Setting up
+                      设置
                       <i class="fa fa-refresh fa-spin"></i>
                     </span>
                   </div>
                   <div ng-switch-when="done">
                     <button type="button" class="close" ng-click="repo.adding=false">&times;</button>
-                    <span class="text">Complete!</span>
+                    <span class="text">完成</span>
                     <div class="btn btn-success" ng-click="startTest(repo)">
-                      Start the first test
+                      开始测试
                     </div>
                     <a class="btn" href="/[[ repo.project.name ]]/config">
-                      Configure
+                      配置
                     </a>
                   </div>
                 </div>
@@ -159,7 +159,7 @@
           </ul>
         </div>
       </div>
-      <div class="tab-pane active" id="manual-setup">
+      <div class="tab-pane" id="manual-setup">
         {% for item in manual %}
         <div id="manual-{{ loop.key }}" ng-controller="ManualController">
           <form name="create{{ loop.key }}">

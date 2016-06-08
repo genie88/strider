@@ -16,7 +16,7 @@
 
   <div class="row-fluid" ng-app="Account" ng-controller="AlertsController">
     <div class="span12">
-      <h3>Account Management</h3>
+      <h3>账户管理</h3>
     </div>
 
       <div class="notify-wrapper pull-right">
@@ -30,16 +30,22 @@
       <div class="span12">
         <div class="tabbable tabs-left" ng-controller="AccountController">
           <ul class="nav nav-tabs">
-            <li class="active"><a href="#email" data-toggle="tab">Email Address</a></li>
-            <li><a href="#password" data-toggle="tab">Password</a></li>
-            {% for provider in providers %}
+            <li class="active"><a href="#email" data-toggle="tab"><i class="fa fa-envelope-o fa-fw"></i>邮箱地址</a></li>
+            <li><a href="#password" data-toggle="tab"><i class="fa fa-key fa-fw"></i>修改密码</a></li>
+
+            <!-- 这里暂时隐藏掉不支持的provider -->
+            <!-- {% for provider in providers %}
             <li>
               <a href="#provider-{{ loop.key }}" data-toggle="tab">{{ provider.title }}</a>
             </li>
-            {% endfor %}
+            {% endfor %} -->
+            <li>
+              <a href="#provider-gitlab" data-toggle="tab"><i class="fa fa-flag"></i>GitLab</a>
+            </li>
+
             {% for job in userConfigs.job %}
             <li>
-              <a href="#job-{{ loop.key }}" data-toggle="tab">{{ job.title }}</a>
+              <a href="#job-{{ loop.key }}" data-toggle="tab"><i class="fa fa-flag"></i>{{ job.title }}</a>
             </li>
             {% endfor %}
           </ul>
@@ -58,12 +64,12 @@
 
             {% for provider in providers %}
               <div id="provider-{{loop.key}}" class="tab-pane provider-tab">
-                <h3>{{ provider.title }} Accounts</h3>
-                <div class="well clearfix" ng-repeat="account in accounts['{{loop.key}}']">
+                <h3>{{ provider.title }} 账户设置</h3>
+                <div class="account-setting" ng-repeat="account in accounts['{{loop.key}}']">
                   {% if provider.html %}
-                    <button class="btn pull-right btn-danger" ng-click="deleteAccount(account)">Delete Account</button>
+                    <button class="btn pull-right btn-danger" ng-click="deleteAccount(account)">删除帐户</button>
                     <div class="control-group">
-                      <label class="control-label">Account Name</label>
+                      <label class="control-label">账户名称</label>
                       <div class="controls">
                         <input ng-model="account.title" type="text">
                       </div>
@@ -82,14 +88,14 @@
                     </h3>
                   {% endif %}
                 </div>
-                <div ng-switch="!!providers['{{ loop.key }}'].setupLink">
+                <div class="account-extras" ng-switch="!!providers['{{ loop.key }}'].setupLink">
                   <div ng-switch-when="true">
-                    <a class="btn btn-success" href="[[ providers['{{ loop.key }}'].setupLink ]]">Add Account</a>
+                    <a class="btn btn-success" href="[[ providers['{{ loop.key }}'].setupLink ]]">添加帐户</a>
                     <span ng-show="accounts['{{ loop.key }}'].length">
                       <strong>Note:</strong> You may need to sign out of {{ loop.key }} if you want to add a different account
                     </span>
                   </div>
-                  <button ng-switch-default class="btn btn-success" ng-click="addAccount('{{ loop.key }}')">Add Account</button>
+                  <button ng-switch-default class="btn btn-success" ng-click="addAccount('{{ loop.key }}')">添加帐户</button>
                 </div>
               </div>
             {% endfor %}
@@ -105,18 +111,18 @@
             <div id="email" class="tab-pane active">
               <div id="account_email">
                 <div class="email-message">
-                  <div class="well">
+                  <div>
                     <fieldset>
-                      <legend>Change Email</legend>
+                      <legend>更换邮箱</legend>
                       <div class="control-group email">
-                        <label class="control-label"for="email">Account Email Address</label>
+                        <label class="control-label"for="email">新邮箱地址</label>
                       </div>
                       <div class="controls">
                         <input class="xlarge" type="text" name="email" ng-model="user.email" />
                         <span class="help-inline email"></span>
                       </div>
                       <div class="actions">
-                        <button class="btn" ng-click="changeEmail()">Change Email</button>
+                        <button class="btn btn-success" ng-click="changeEmail()">更换邮箱</button>
                       </div>
                     </fieldset>
                   </div>
@@ -127,27 +133,27 @@
             <div id="password" class="tab-pane">
               <div id="change_password">
                 <form class="password-message" name="passwordForm">
-                  <div class="well">
+                  <div class="">
                     <fieldset>
-                      <legend>Change Password</legend>
+                      <legend>修改密码</legend>
                       <div class="control-group password">
-                        <label class="control-label" for="password">New Password</label>
+                        <label class="control-label" for="password">设置新密码</label>
                       </div>
                       <div class="controls">
                         <input class="xlarge" type="password" ng-minlength="8" name="password" ng-model="password">
                         <span class="help-inline password"></span>
-                        <span ng-show="passwordForm.password.$dirty && passwordForm.password.$error.minlength">Password must be longer than 8 characters</span>
+                        <span ng-show="passwordForm.password.$dirty && passwordForm.password.$error.minlength">密码长度必须大于8位</span>
                       </div>
                       <div class="control-group password-confirm">
-                        <label class="control-label" for="password_confirm">Confirm Password</label>
+                        <label class="control-label" for="password_confirm">确认密码</label>
                       </div>
                       <div class="controls">
                         <input class="xlarge" type="password" name="confirm_password" ng-model="confirm_password">
                         <span class="help-inline password-confirm"></span>
-                        <span ng-show="passwordForm.password.$valid && confirm_password !== password">Passwords must match</span>
+                        <span ng-show="passwordForm.password.$valid && confirm_password !== password">两次输入的密码不一致</span>
                       </div>
                       <div class="actions">
-                        <button class="btn" ng-click="changePassword()" ng-disabled="!passwordForm.$valid || confirm_password !== password">Change Password</a>
+                        <button class="btn btn-success" ng-click="changePassword()" ng-disabled="!passwordForm.$valid || confirm_password !== password">修改密码</a>
                       </div>
                     </fieldset>
                   </div>

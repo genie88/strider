@@ -1,4 +1,21 @@
-
+.projects-page{
+  input{
+    height: 30px;
+    min-width: 300px;
+    &:focus{
+      border-color: #bfbfbf;
+      outline: 0;
+      box-shadow: none !important;
+    }
+  }
+  textarea {
+    &.focus {
+      border-color: #bfbfbf;
+      outline: 0;
+      box-shadow: none !important;
+    }
+  }
+}
 #manual-setup {
   .general {
     input {
@@ -6,14 +23,14 @@
     }
     margin-bottom: 10px;
   }
-  
+
   form {
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px 15px 15px;
     margin-bottom: 10px;
   }
-  
+
   .provider-specific {
     margin-bottom: 10px;
   }
@@ -100,7 +117,7 @@ input.ng-dirty.ng-invalid:focus {
     &:last-child {
       border-bottom: none;
     }
-    
+
     &:hover {
       background-color: #eee;
     }
@@ -138,4 +155,4 @@ input.ng-dirty.ng-invalid:focus {
     }
   }
 }
-    
+

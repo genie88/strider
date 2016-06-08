@@ -1,0 +1,51 @@
+.tabs-left {
+  margin: 0 24px;
+  background-color: #f6f6f6;
+  border: 1px solid #edf0f2 \9;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+  min-height: 800px;
+  .nav-tabs {
+    border: 0;
+    width: 200px;
+    height: 800px;
+    text-align: center;
+    padding-top: 50px;
+    border-right: 1px solid #ddd;
+    background-color: #f6f6f6;
+    margin: 0;
+    li {
+      &.active a{
+        border:0;
+        border-right: 1px solid #ddd;
+        border-radius: 0px;
+        color: #0e2026;
+        background-color: #edf0f2;
+      }
+      a {
+        border:0;
+        border-radius: 0px;
+        color:#3d5159;
+        height: 34px;
+        line-height: 34px;
+        border-right: 1px solid #ddd;
+
+        .fa {
+          line-height: 34px;
+          height: 34px;
+          float: left;
+          margin-left: 40px;
+          color: #76858c;
+        }
+      }
+    }
+  }
+  .tab-content{
+    padding: 40px;
+
+    .account-extras, .account-setting{
+      margin-top: 40px;
+    }
+  }
+}
