@@ -1,12 +1,9 @@
 <div id="project_config_collaborators" ng-controller="CollaboratorsCtrl" class="well">
   <fieldset>
-    <legend>Collaborators</legend>
+    <legend>项目合作者</legend>
     <div class="alert alert-success hide"></div>
     <p>
-      Collaborators will be notified of build success/failure, be
-      able to trigger test jobs and deploys, and access job
-      details. They will not be permitted to add other new
-      collaborators nor change any project configuration.
+      项目合作者有读取项目详细信息、编译状态、触发项目进行编译部署等权限。项目合作者不允许添加新的合作者或者更改项目的配置。
     </p>
     <div class="row-fluid">
       <div class="span6">
@@ -22,7 +19,7 @@
             </td>
           </tr>
           <tr ng-hide="collaborators.length">
-            <td colspan="3" class="no-collaborators">No collaborators. Add one!</td>
+            <td colspan="3" class="no-collaborators">尚无项目合作者</td>
           </tr>
         </table>
       </div>
@@ -33,13 +30,13 @@
                      name="new_collaborator" placeholder="email address"
                      class="collab-email span2 inline-input"/>
               <div class="btn-group access-toggle">
-                <button class="btn" required ng-model="new_access" btn-radio="0">Read</button>
-                <button class="btn" required ng-model="new_access" btn-radio="1">Run</button>
-                <button class="btn" required ng-model="new_access" btn-radio="2">Admin</button>
+                <button class="btn" required ng-model="new_access" btn-radio="0">读取</button>
+                <button class="btn" required ng-model="new_access" btn-radio="1">运行</button>
+                <button class="btn" required ng-model="new_access" btn-radio="2">管理员</button>
               </div>
-              <button ng-disabled="!collabForm.$valid" ng-click="add()" class="btn btn-add-collab">Add</button>
           </div>
         </form>
+        <button ng-disabled="!collabForm.$valid" ng-click="add()" class="btn btn-success btn-add-collab">添加项目合作者</button>
       </div>
     </div>
   </fieldset>

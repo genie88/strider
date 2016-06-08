@@ -1,13 +1,12 @@
 <div class="project-config">
   <div class="well" id="visibility-config">
-    <legend>Project Visibility</legend>
-
-    <p class="help-text">Projects are private by default. Job history, status and console output of public projects are visible to anyone who knows the URL.
+    <legend>设置项目是否公开</legend>
+    <p class="help-text">项目默认为私有的。项目设置为公开后，所有知道项目公开地址的人将会有权限查看项目的编译历史、项目状态以及控制台输出等信息。
       <p>
-        Public URL: <a href="{{ serverName }}/{{ project.name }}/"><strong>{{ serverName }}/{{ project.name }}/</strong></a>
+        项目公开后的地址: <a href="{{ serverName }}/{{ project.name }}/"><strong>{{ serverName }}/{{ project.name }}/</strong></a>
       </p>
       <label class="checkbox">
-        <input data-test="public" type="checkbox" ng-model="project.public" ng-change="saveProject()"> Make this project public
+        <input data-test="public" type="checkbox" ng-model="project.public" ng-change="saveProject()"> 公开此项目
       </label>
     </p>
   </div>
@@ -16,24 +15,21 @@
 
   <div class="row-fluid">
     <div class="span6">
-      <h3>Delete Project</h3>
+      <h3>删除项目</h3>
       <p>
-        Permanently remove {{ project.name }} from Strider
+        从Raptor中永久删除项目 {{ project.name }}
       </p>
-      <button ng-click="deleting = 'really_delete'" class="btn btn-danger">Delete Project</button>
-      <button ng-click="deleteProject()" ng-show="deleting === 'really_delete'" class="btn btn-danger">Really Delete</button>
-      <button ng-show="deleting === 'really_delete'" ng-click="deleting = false" class="btn btn-success">Just Kidding</button>
+      <button ng-click="deleting = 'really_delete'" class="btn btn-danger">删除项目</button>
+      <button ng-click="deleteProject()" ng-show="deleting === 'really_delete'" class="btn btn-danger">确定删除</button>
+      <button ng-show="deleting === 'really_delete'" ng-click="deleting = false" class="btn btn-success">放弃</button>
     </div>
     <div class="span6">
-      <h3>Project Cache</h3>
+      <h3>项目缓存</h3>
       <p>
-        Each project has an associated cache where plugins and providers
-        can store data to save time on running jobs. In case something
-        unexpected happens and you want to blow away the cache, do that
-        here.
+        每个项目的插件或者代码提供者都会有对应的缓存机制以节省编译部署时间。如果项目出现某些未知的错误，可以尝试点击下面的按钮进行缓存清理。
       </p>
       <button class="btn btn-warning" ng-disabled="clearingCache" ng-click="clearCache()">
-        Clear Cache
+        清除缓存
         <i class="fa fa-refresh fa-spin" ng-show="clearingCache"></i>
       </button>
     </div>

@@ -1,13 +1,12 @@
 <div id="project_config_branches" ng-controller="BranchesCtrl" class="well">
   <fieldset>
-    <legend>Branches</legend>
+    <legend>分支 Branches</legend>
     <div class="alert alert-success hide"></div>
-    <p>Configure which branches will be watched on this project.</p>
-    <p>A '*' may be used as a wildcard e.g 'release/*' will match all branches that start with 'release/'.</p>
-    <p>A '*' may be used on its own to signify that you want every branch to be watched.</p>
+    <p>配置需要监控和处理项目分支。</p>
+    <p>'*'号可以作为通配符使用，例如 'release/*' 可以匹配所有以 'release/' 开头的分支。</p>
+    <p>单独一个'*'号可以用于配置项目的所有分支。</p>
     <p>
-      When using wildcards, the order which branches are listed is very important. '*' must be last.
-      If '*' is first, then all other branches will be ignored.
+      当使用'*'通配符时，需要注意分支的排列顺序。通常'*'通配符需要置于列表的最后。否则其后所有的匹配规则将被忽略。
     </p>
     <div class="row-fluid">
       <div class="span6">
@@ -18,9 +17,9 @@
                      typeahead="branch for branch in allBranches | filter:$viewValue"
                      typeahead-template-url="/ui-bootstrap/template/typeahead/typeahead-popup.html"
                      type="text" required
-                     name="name" placeholder="branch name"
+                     name="name" placeholder=" 分支名 "
                      class="span4 inline-input"/>
-              <button class="btn" ng-disabled="!branchForm.$valid" ng-click="add()">Add</button>
+              <button class="btn btn-success" ng-disabled="!branchForm.$valid" ng-click="add()"> 添加分支 </button>
           </div>
         </form>
       </div>

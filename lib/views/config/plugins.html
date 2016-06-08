@@ -1,5 +1,8 @@
 <div class="pick-runner clearfix">
-  <h3>Pick the Runner</h3>
+  <h3>选择执行器[Runner]</h3>
+  <p>
+    执行器用于执行构建任务。如果不清楚如何选择，请不要更改此处设置。
+  </p>
   {% for runner in runners %}
   <div ng-click="setRunner('{{ loop.key }}')"
        ng-class="{ active: branch.runner.id == '{{ loop.key }}'}"
@@ -10,19 +13,18 @@
   {% endfor %}
 </div>
 <div class="pick-plugins clearfix">
-  <h3>Choose Plugins</h3>
+  <h3>选择插件[Plugins]</h3>
   <p>
-    Drag and drop plugins from "Available Plugins" to "Active Plugins" to enable them for this branch.
-    To install more plugins, go to the <a href="{{serverName}}/admin/plugins">plugins page</a>.
+    将插件从［可选插件］列表中拖到［使用中］列表中可以开启插件。
+    <!-- 安装更多插件，请点击<a href="{{serverName}}/admin/plugins">插件安装页</a>. -->
   </p>
 
   <p>
-    Plugins are run in the order they are specified here.
-    Active plugins can be configured by clicking their corresponding tabs on the left.
+    插件将会被按照其排列顺序依次调用。可以在左侧Tab中选择对应的插件进行配置。
   </p>
   <div class="enabled-plugins">
-    <h3>Active Plugins</h3>
-    <span ng-hide="branch.plugins.length" class="drop-here">Drag and drop here</span>
+    <h3>使用中</h3>
+    <span ng-hide="branch.plugins.length" class="drop-here">拖到这里来</span>
     <ul class="enabled-plugins-list"
       ng-sortable="reorderPlugins"
       ng-sortable-key="id"
@@ -38,18 +40,18 @@
         <div class="rest">
           <span class="title">[[ plugins[plugin.id].title ]]</span>
           <label type="checkbox">
-            <input ng-change="savePluginOrder()" ng-model="plugin.enabled" type="checkbox"> Enabled
+            <input ng-change="savePluginOrder()" ng-model="plugin.enabled" type="checkbox"> 开启
           </label>
           <label type="checkbox" ng-show="statusBlocks.job[plugin.id]">
-            <input ng-change="savePluginOrder()" ng-model="plugin.showStatus" type="checkbox"> Show Status
+            <input ng-change="savePluginOrder()" ng-model="plugin.showStatus" type="checkbox"> 显示状态
           </label>
         </div>
       </li>
     </ul>
   </div>
   <div class="disabled-plugins">
-    <h3>Available Plugins</h3>
-    <span class="drop-here" ng-hide="disabled_plugins[branch.name].length">Drag and drop here</span>
+    <h3>可选插件</h3>
+    <span class="drop-here" ng-hide="disabled_plugins[branch.name].length">拖到这里来</span>
     <ul class="disabled-plugins-list"
       ng-sortable
       ng-sortable-key="id"
