@@ -23,9 +23,10 @@
 
             {% pluginblock Nav %}
               <ul class="nav">
-                <li><a href="/">主页</a></li>
+                <li><a href="/">首页</a></li>
                 {% if currentUser %}
-                  <li><a href="/projects">项目</a></li>
+                  <li><a href="/projects">我的项目</a></li>
+                  <li><a href="/tests">我的测试</a></li>
                   {% if currentUser.account_level > 0 %}
                     {% pluginblock AdminNav %}
                       <li class='dropdown'>

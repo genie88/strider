@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block preTitle %}
+   我的任务 -
+{% endblock %}
+
+{% pluginblock ExtraStyles %}
+  <script>
+    var tests = {{ tests | scriptjson | raw }};
+  </script>
+{% endpluginblock %}
+
+
+{% block bodyContent %}
+  <h3>我的任务</h3>
+
+  <div class="projects-page" ng-app="projects" ng-controller="AlertsController">
+    {% for messages in flash %}
+      {% for message in messages %}
+        <div class="alert alert-info">{{ message|raw }}</div>
+      {% endfor %}
+    {% endfor %}
+
+    <div class="notify-wrapper pull-right">
+      <div id="notify" ng-class="{ visible: message.showing }" class="alert alert-[[ message.type ]]">
+        <a type="button" class="close" ng-click="clearMessage()">&times;</a>
+        <div class="message" ng-bind-html="message.text"></div>
+      </div>
+    </div>
+
+    <div class="tab-content" ng-controller="TestController">
+      <div class="toolbar">
+        <a title="添加任务" class="btn btn-primary"
+          data-toggle="modal"
+          data-target="#createTestCase">
+          <i class="fa fa-add"></i>添加任务
+        </a>
+      </div>
+      <table class="table" id="job-list">
+        <thead>
+          <tr>
+            <th class="job-header">任务编号</th>
+            <th class="deploy-header">任务标题</th>
+            <th class="refresh-header">测试页面</th>
+            <th>PageDiff基线</th>
+            <th>任务类型</th>
+            <th>用户</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>dd</td>
+            <td>ddd</td>
+            <td>ddd</td>
+            <td>ddd</td>
+            <td>ddd</td>
+            <td>ddd</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <!-- 添加修改测试任务弹窗 -->
+      <div class="modal fade" id="createTestCase" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true" style="width: 1000px; margin-left: -500px;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close"
+                     data-dismiss="modal" aria-hidden="true">
+                        &times;
+                  </button>
+                  <h4 class="modal-title" id="myModalLabel">
+                     创建测试任务
+                  </h4>
+               </div>
+               <div class="modal-body">
+                  <div class="container-fluid">
+                    <div class="row">
+                    <form role="form">
+                      <div class="span5" style="padding-left: 20px">
+                          <div class="form-group">
+                            <label> 任务标题 </label>
+                            <input type="text" class="form-control"
+                              placeholder="任务标题" ng-model="test.title"/>
+                          </div>
+                          <div class="form-group">
+                            <label> 测试页面 </label>
+                            <input type="url" class="form-control"
+                              placeholder="测试页面地址，例如 http://m.mgtv.com" ng-model="test.url"/>
+                          </div>
+                          <div class="form-group">
+                            <label> 自定义屏幕宽高尺寸 </label>
+                            <input type="text" class="form-control"
+                              placeholder="默认(iPhone6): 375*677" ng-model="test.config.screen"/>
+                          </div>
+                          <div class="form-group">
+                            <label> 自定义请求头 </label>
+                            <input type="text" class="form-control"
+                              placeholder="自定义请求头" ng-model="test.config.header"/>
+                          </div>
+                          <div class="form-group">
+                            <label> 自定义UserAgent </label>
+                            <input type="text" class="form-control"
+                              placeholder="自定义UserAgent" ng-model="test.config.useragent"/>
+                          </div>
+                      </div>
+                      <div class="span7">
+                          <div class="form-group">
+                            <label> 测试代码 </label>
+                            <textarea style="width: 550px; height: 335px;"
+                              ng-model="test.code"></textarea>
+                          </div>
+                      </div>
+                    </form>
+                    </div>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default"
+                     data-dismiss="modal">取消
+                  </button>
+                  <button type="button" class="btn btn-primary" ng-click="create()">
+                     确定
+                  </button>
+               </div>
+            </div>
+          </div>
+      </div>
+      <!-- 添加修改测试任务弹窗 -->
+
+    </div>
+  </div>
+{% endblock %}
